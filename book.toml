@@ -1,0 +1,6 @@
+[book]
+authors = ["Elena Fuentes & Hernán Vanegas"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Publicly Verifiable & Private Collaborative ML Model Training"

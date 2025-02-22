@@ -1,0 +1,8 @@
+  - [Introduction](introduction.md)
+  - [Fixed-point Arithmetic](fixed-point-arithmetic.md)
+  - [Logistic Regression](logistic-regression.md)
+  - [Optimizations](optimizations.md)
+  - [Co-Noir](co-noir.md)
+  - [Benchmarking](benchmarking.md)
+  - [Lessons Learned & Discussion](lessons-learned.md)
+  - [References](references.md)
