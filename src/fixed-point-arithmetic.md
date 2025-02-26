@@ -51,12 +51,12 @@ Then, we add them as follows:
 
 ```rust
 let addition1_quantized = a1_quantized + b1_quantized;
-````
+```
 
 The above operation is equal to 
 
-$$
-294912 + (p-203161) = 294912-203161 + p = 91751 + p,
+$$ 
+294912 + (p-203161) = 294912-203161 + p = 91751 + p, 
 $$
 
 which is equals to $91751$ modulo $p$. 
