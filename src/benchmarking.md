@@ -6,7 +6,11 @@ We performed a benchmarking process to test the performance of our implementatio
 - Number of gates and ACIR opcodes of the Noir implementation for different number of samples.
 - Training time using co-noir for different number of samples.
 
-The benchmarks were executed in a server with an AMD EPYC Processor @ 2.0 GHz with 32 GB of RAM. 
+The benchmarks were executed in a server with an AMD EPYC Processor @ 2.0 GHz with 32 GB of RAM. The version of each tool used in these benchmarks are:
+
+- Noir: 1.0.0-beta.2
+- Barretenberg: 0.72.1
+- coNoir: 0.5.0
 
 ### Datasets
 
@@ -55,11 +59,11 @@ For the last table with the Wine dataset, we did not measure the case for 30 epo
 
 In the case of the co-noir training time, we have the following results for the Iris dataset:
 
-| Epochs | Train samples | Training time [sec.] |
-|--------|---------------|----------------------|
-|     10 |            30 |                2,040 |
-|     10 |            50 |                3,545 |
-|     20 |            30 |                4,148 |
+| Epochs | Train samples | Training time [sec.] | Accuracy |
+|--------|---------------|----------------------|----------|
+|     10 |            30 |                2,040 | 0.80     |
+|     10 |            50 |                3,545 | 0.55     |
+|     20 |            30 |                4,148 | 0.85     |
 
 The case for 20 epochs and 50 samples was not possible to run because the generation of the witness takes too long and the co-noir process gets killed because of time out.
 
@@ -68,5 +72,3 @@ For the Wine dataset with 10 epochs and 30 training samples, it takes 4,365 seco
 As a reference, a Python training using `scikit-learn` for 30 and 50 samples takes around ~0.006 seconds in average (yes, there is not much difference between them) using a laptop with 20 × 13th Gen Intel® Core™ i7-13700H with 32 GB of RAM. Although it is well understood that it is not possible (or at least very, ***VERY*** difficult) to obtain a training time similar to a clear text implementation, this shows that there is a lot of work to do in the realm of privacy-preserving machine learning to improve the performance of this kind of protocols. However, when protocols are running in servers, it is possible to increase the capabilities of the servers to speed-up the training and proving process using co-noir without sacrificing or compromising the security guarantees.
 
 Finally, we compared our Noir implementation using fixed-point numbers with a Rust implementation using floating-point numbers with type `f64`. We found that both implementations obtain ***exactly*** the same accuracy in all the examples we ran. This means that the fact that we are using fixed point numbers in the secure training does not affect significantly the result with respect to a floating point training. To reproduce this experiments, you can use the logistic regression implementation in Rust presented in [this repository](https://github.com/ewynx/rs-logistic-regression). You can use the Rust implementation along with the scripts `run_single_test.sh`, `accuracy_evaluation/evaluate_float_model.py` and `accuracy_evaluation/generate_rust_dataset.py` to compare both accuracies.
-
-These numbers can be found in the [Benchmark report](https://docs.google.com/spreadsheets/d/1H9VOBIaQpKs2oqNCLjtJT7AEs75i7uHKTq4Re4_cD-o/edit?usp=sharing) and reproduced using the [noir-mpc-ml benchmarking repo](https://github.com/hashcloak/bench-noir-mpc-ml).
